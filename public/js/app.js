@@ -1,5 +1,7 @@
 // ── Init ─────────────────────────────────────────────────────────────────
-const socket      = io();   // mismo origen que el servidor
+const socket      = io(window.SERVER_URL || window.location.origin, {
+  transports: ["websocket"],   // requerido en Cloudflare / proxies
+});
 const clockSync   = new ClockSync(socket);
 const audioEngine = new AudioEngine();
 
